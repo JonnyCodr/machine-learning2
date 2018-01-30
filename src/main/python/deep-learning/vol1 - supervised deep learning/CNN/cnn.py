@@ -23,13 +23,13 @@ classifier.add(Conv2D(32, (3, 3), input_shape=(64, 64, 3), activation='relu'))
 # Step 2 - Pooling
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
-# Adding a second hidden layer
-classifier.add(Conv2D(32, (3, 3), activation='relu'))
-classifier.add(MaxPooling2D(pool_size=(2, 2)))
+# # Adding a second hidden layer
+# classifier.add(Conv2D(32, (3, 3), activation='relu'))
+# classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
-# Adding a third hidden layer
-classifier.add(Conv2D(64, (3, 3), activation='relu'))
-classifier.add(MaxPooling2D(pool_size=(2, 2)))
+# # Adding a third hidden layer
+# classifier.add(Conv2D(64, (3, 3), activation='relu'))
+# classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
 # Adding a second convolutional layer
 classifier.add(Conv2D(32, (3, 3), activation='relu'))
@@ -59,7 +59,7 @@ train_datagen = ImageDataGenerator(rescale=1./255,
 test_datagen = ImageDataGenerator(rescale=1./255)
 
 # One way to improve the accuracy is to increase the target size.... but beware. going up in size will
-# give more data to process which translates to more data to process and longer process times.... it is recomented
+# give more data to process which translates to more data to process and longer process times.... it is recommended
 # to step up to 150x150
 
 training_set = train_datagen.flow_from_directory('./dataset/training_set',
@@ -74,7 +74,8 @@ test_set = test_datagen.flow_from_directory('./dataset/test_set',
 
 classifier.fit_generator(training_set,
                          steps_per_epoch=8000,
-                         epochs=25,
+                         # epochs=25,
+                         epochs=3,
                          validation_data=test_set,
                          validation_steps=2000)
 
@@ -94,3 +95,94 @@ else:
     prediction = 'cat'
 
 print(prediction)
+#
+# test_image2 = image.load_img('./dataset/single_prediction/cat_or_dog_2.jpg', target_size=(64, 64))
+# test_image2 = image.img_to_array(test_image2)
+# test_image2 = np.expand_dims(test_image2, axis=0)
+# result = classifier.predict(test_image2)
+# print(training_set.class_indices)
+#
+# if result[0][0] == 1:
+#     prediction = 'dog'
+# else:
+#     prediction = 'cat'
+#
+# print(prediction)
+#
+# test_image3 = image.load_img('./dataset/single_prediction/cgr1_cat_or_dog.jpg', target_size=(64, 64))
+# test_image3 = image.img_to_array(test_image3)
+# test_image3 = np.expand_dims(test_image3, axis=0)
+# result = classifier.predict(test_image3)
+# print(training_set.class_indices)
+#
+# if result[0][0] == 1:
+#     prediction = 'dog'
+# else:
+#     prediction = 'cat'
+#
+# print('cgr1', prediction)
+#
+# test_image4 = image.load_img('./dataset/single_prediction/cgr2_cat_or_dog.jpg', target_size=(64, 64))
+# test_image4 = image.img_to_array(test_image4)
+# test_image4 = np.expand_dims(test_image4, axis=0)
+# result = classifier.predict(test_image4)
+# print(training_set.class_indices)
+#
+# if result[0][0] == 1:
+#     prediction = 'dog'
+# else:
+#     prediction = 'cat'
+#
+# print('cgr2: ', prediction)
+#
+# test_image5 = image.load_img('./dataset/single_prediction/cgr3_cat_or_dog.jpg', target_size=(64, 64))
+# test_image5 = image.img_to_array(test_image5)
+# test_image5 = np.expand_dims(test_image5, axis=0)
+# result = classifier.predict(test_image5)
+# print(training_set.class_indices)
+#
+# if result[0][0] == 1:
+#     prediction = 'dog'
+# else:
+#     prediction = 'cat'
+#
+# print('cgr3: ', prediction)
+#
+# test_image6 = image.load_img('./dataset/single_prediction/jmen1_cat_or_dog.jpg', target_size=(64, 64))
+# test_image6 = image.img_to_array(test_image6)
+# test_image6 = np.expand_dims(test_image6, axis=0)
+# result = classifier.predict(test_image6)
+# print(training_set.class_indices)
+#
+# if result[0][0] == 1:
+#     prediction = 'dog'
+# else:
+#     prediction = 'cat'
+#
+# print('jmen1: ', prediction)
+#
+# test_image7 = image.load_img('./dataset/single_prediction/jmen2_cat_or_dog.jpg', target_size=(64, 64))
+# test_image7 = image.img_to_array(test_image7)
+# test_image7 = np.expand_dims(test_image7, axis=0)
+# result = classifier.predict(test_image7)
+# print(training_set.class_indices)
+#
+# if result[0][0] == 1:
+#     prediction = 'dog'
+# else:
+#     prediction = 'cat'
+#
+# print('jmen2:', prediction)
+#
+test_image8 = image.load_img('./dataset/single_prediction/klf1_cat_or_dog.jpg', target_size=(64, 64))
+test_image8 = image.img_to_array(test_image8)
+test_image8 = np.expand_dims(test_image8, axis=0)
+result = classifier.predict(test_image8)
+print(training_set.class_indices)
+
+if result[0][0] == 1:
+    prediction = 'dog'
+else:
+    prediction = 'cat'
+
+print('klf1: ', prediction)
