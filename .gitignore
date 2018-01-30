@@ -105,3 +105,4 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+/src/main/python/deep-learning/vol1 - supervised deep learning/CNN/dataset/
